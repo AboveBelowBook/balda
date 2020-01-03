@@ -12,22 +12,37 @@
       rfs.call(el);
   };
 
-  var counter;
+  var counter, indexArrow=0;
+  var mayerSquare = [ [], [3,6,8,1,5,4,7,2], [8,1,3,6,5,4,7,2], [1,8,6,3,4,5,7,2], [6,3,1,8,4,5,7,2] ];
+  
   function clearCounter()
   {
     for(i=1;i<10; i++)
+    {
       document.getElementById("z"+i).style.backgroundColor = "";
+      document.getElementById("s"+i).style.display = "none";
+    }
     document.getElementById("main").innerHTML = "";
     counter = setTimeout('setCounter()',200);
   }
   function setCounter()
   {
-    var min = 1;
-    var max = parseInt(document.getElementById('intMax').value)+1;
-    var n = parseInt( Math.random() * (max - min) + min );
-    
-    document.getElementById("main").innerHTML = n
-    document.getElementById("z"+n).style.backgroundColor = "red";
+    var type = document.getElementById("typeTimer").options[document.getElementById("typeTimer").selectedIndex].value;
+    if( type == 0 ) 
+    {
+      var min = 1;
+      var max = parseInt(document.getElementById('intMax').value)+1;
+      var n = parseInt( Math.random() * (max - min) + min );
+      
+      document.getElementById("main").innerHTML = n
+      document.getElementById("z"+n).style.backgroundColor = "red";
+    }
+    else
+    {
+      document.getElementById("s"+mayerSquare[type][indexArrow]).style.display = "inline";
+      indexArrow++;
+      if(indexArrow>7) indexArrow=0;
+    }
     
     counter = setTimeout('clearCounter()',parseInt(document.getElementById('intRange').value));
   }
@@ -35,6 +50,16 @@
   {
     clearInterval(counter);
     counter = setTimeout('setCounter()',parseInt(document.getElementById('intRange').value));
+  }
+  function changeType()
+  {
+    indexArrow=0;
+    document.getElementById("main").innerHTML = "";
+    var type = document.getElementById("typeTimer").options[document.getElementById("typeTimer").selectedIndex].value;
+    if( type == 0 ) 
+      document.getElementById("mainImg").src="./bg2.png";
+    else
+      document.getElementById("mainImg").src="./mayer.png";
   }
 </script>
 <style>
@@ -163,7 +188,7 @@ input[type='range']::-webkit-slider-thumb{
 </style>
 </head>
 <body id="bodyContent" style="background-color:black; text-align:center; color:white;">
-<img src="./bg2.png" style="height:100%;">
+<img id="mainImg" src="./bg2.png" style="height:100%;">
 <table style="position: fixed; width:100%;height:100%; top:0px;">
 <tr style="height:15%;">
   <td rowspan="5"></td>
@@ -193,6 +218,25 @@ input[type='range']::-webkit-slider-thumb{
   <td id="z4"></td>
 </tr>
 </table>
+<div style="position:fixed; width:100%; height:100%; top:0px; text-align:center;">
+  <table style="height:100%; color:red; font-size:25vh; margin: auto;">
+  <tr>
+    <td style="width:25vh; height:25vh; text-align:right; vertical-align:bottom;"><font id="s1" style="display:none;">&#11018;</font>&nbsp;</td>
+    <td style="width:25vh; height:25vh; text-align:center; vertical-align:top;"><font id="s2" style="display:none;">&#129067;</font>&nbsp;</td>
+    <td style="width:25vh; height:25vh; text-align:left; vertical-align:bottom;"><font id="s3" style="display:none;">&#11019;</font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="width:25vh; height:25vh; text-align:right; vertical-align:middle;"><font id="s4" style="display:none;">&#129066;</font>&nbsp;</td>
+    <td><font id="s9" style="display:none;"></font>&nbsp;</td>
+    <td style="width:25vh; height:25vh; text-align:left; vertical-align:middle;"><font id="s5" style="display:none;">&#129064;</font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="width:25vh; height:25vh; text-align:right; vertical-align:top;"><font id="s6" style="display:none;">&#11016;</font>&nbsp;</td>
+    <td style="width:25vh; height:25vh; text-align:center; vertical-align:bottom;"><font id="s7" style="display:none;">&#129065;</font>&nbsp;</td>
+    <td style="width:25vh; height:25vh; text-align:left; vertical-align:top;"><font id="s8" style="display:none;">&#11017;</font>&nbsp;</td>
+  </tr>
+  </table>
+</div>
 <div id="main" style="position: fixed; top: -7vh; width: 100%; text-align: center; font-size:100vh; font-weight: bold;">0</div>
 <div style="position: fixed; top: 0px; width: 100%; height: 50px; z-index:1;">
   <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left; width:25%; height:100%; margin-top:4vh;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
@@ -204,6 +248,13 @@ input[type='range']::-webkit-slider-thumb{
   <div id="printRange" style="float:left; font-size:15vh; width:10%;">0.6</div>
   <div id="printMax" style="float:right; margin-right:15px; font-size:15vh; width:10%;">4</div>
 </div>
+<select id="typeTimer" onChange="changeType();" style="position:fixed; width:20vh; font-size:10vh; left:0px; bottom:0px;">
+  <option value="0">Body</option>
+  <option value="1">1 Square</option>
+  <option value="2">2 Square</option>
+  <option value="3">3 Square</option>
+  <option value="4">4 Square</option>
+</select>
 <input type="button" value="&#8690;" onClick="setFullScreen();" style="position:fixed; font-size:10vh; right:0px; bottom:0px;">
 </body>
 </html>
