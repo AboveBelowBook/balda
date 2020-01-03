@@ -13,6 +13,13 @@
   };
 
   var counter;
+  function clearCounter()
+  {
+    for(i=1;i<10; i++)
+      document.getElementById("z"+i).style.backgroundColor = "";
+    document.getElementById("main").innerHTML = "";
+    counter = setTimeout('setCounter()',200);
+  }
   function setCounter()
   {
     var min = 1;
@@ -20,18 +27,14 @@
     var n = parseInt( Math.random() * (max - min) + min );
     
     document.getElementById("main").innerHTML = n
-    
-    for(i=1;i<10; i++)
-      document.getElementById("z"+i).style.backgroundColor = "";
-      
-    //el = document.getElementsByClassName("head");
-
     document.getElementById("z"+n).style.backgroundColor = "red";
+    
+    counter = setTimeout('clearCounter()',parseInt(document.getElementById('intRange').value));
   }
   function startCounter()
   {
     clearInterval(counter);
-    counter = setInterval('setCounter()',parseInt(document.getElementById('intRange').value));
+    counter = setTimeout('setCounter()',parseInt(document.getElementById('intRange').value));
   }
 </script>
 <style>
