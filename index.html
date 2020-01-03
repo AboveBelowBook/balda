@@ -130,9 +130,10 @@ input[type='range']{
 }
 input[type='range']::-webkit-slider-thumb{
     background:#f60;
-    height:30px;
-    width:30px;
-    border-radius: 30px;
+    margin-top:-24px;
+    height:50px;
+    width:50px;
+    border-radius: 50px;
 }
 @media screen and (orientation: portrait) { 
   img { 
@@ -168,10 +169,10 @@ input[type='range']::-webkit-slider-thumb{
 </table>
 <div id="main" style="position: fixed; top: 0px; width: 100%; text-align: center; font-size:100vh; font-weight: bold;">0</div>
 <div style="position: fixed; top: 0px; width: 100%; height: 50px; z-index:1;">
-  <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left;font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
+  <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left;width:25%; height:100%;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
   <input type="button" onClick="startCounter();" value="&#9654;" style="float:left;font-size:15vh; width:10%; min-width:15vh;">
   
-  <input id="intMax" type="range" min="2" max="9" step="1" value="4" style="float:right; font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printMax').innerHTML=this.value;">
+  <input id="intMax" type="range" min="2" max="9" step="1" value="4" style="float:right; width:25%; height:100%;" onInput="document.getElementById('printMax').innerHTML=this.value;">
   <input type="button" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:15vh; width:10%; min-width:15vh;">
   <br clear="all">
   <div id="printRange" style="float:left; font-size:15vh; width:10%;">0.6</div>
