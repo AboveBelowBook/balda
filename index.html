@@ -1,0 +1,64 @@
+<html>
+<head>
+<script>
+  var counter;
+  function setCounter()
+  {
+    var min = 1;
+    var max = parseInt(document.getElementById('intMax').value)+1;
+    var n = parseInt( Math.random() * (max - min) + min );
+    
+    document.getElementById("main").innerHTML = n
+    
+    for(i=1;i<10; i++)
+      document.getElementById("z"+i).style.backgroundColor = "";
+      
+    //el = document.getElementsByClassName("head");
+
+    document.getElementById("z"+n).style.backgroundColor = "red";
+  }
+  function startCounter()
+  {
+    clearInterval(counter);
+    counter = setInterval('setCounter()',parseInt(document.getElementById('intRange').value));
+  }
+</script>
+</head>
+<body style="background-color:black; text-align:center; color:white;">
+<img src="./bg2.png" style="position:fixed; height:100%; top:0px; left:50%; width:400px; margin-left:-200px;">
+<table style="position: fixed; width:100%;height:100%; top:0px;">
+<tr>
+  <td rowspan="5"></td>
+  <td id="z9" colspan="2" class="head"></td>
+  <td rowspan="5"></td>
+</tr>
+<tr>
+  <td id="z1"></td>
+  <td id="z2"></td>
+</tr>
+<tr>
+  <td id="z5"></td>
+  <td id="z6"></td>
+</tr>
+<tr>
+  <td id="z7"></td>
+  <td id="z8"></td>
+</tr>
+<tr>
+  <td id="z3"></td>
+  <td id="z4"></td>
+</tr>
+</table>
+<div id="main" style="font-size:100vh; font-weight: bold; position: relative;">0</div>
+<div style="position: fixed; top: 0px; width: 100%; height: 50px; z-index:1;">
+  <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left;font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
+  <input type="button" onClick="startCounter();" value="&#9654;" style="float:left;font-size:15vh; width:10%;">
+  
+  <input id="intMax" type="range" min="2" max="9" step="1" value="4" style="float:right; font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printMax').innerHTML=this.value;">
+  <input type="button" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:15vh; width:10%;">
+  <br clear="all">
+  <div id="printRange" style="float:left; font-size:20vh; width:10%; margin-top:-5%;">0.6</div>
+  <div id="printMax" style="float:right; margin-right:20px; font-size:20vh; width:10%; margin-top:-5%;">4</div>
+</div>
+</body>
+</html>
