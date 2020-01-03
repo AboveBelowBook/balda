@@ -156,6 +156,9 @@ input[type='range']::-webkit-slider-thumb{
   table { 
       display:none; 
   }
+  #pauseButton { 
+      display:none; 
+  }
 }
 </style>
 </head>
@@ -193,10 +196,10 @@ input[type='range']::-webkit-slider-thumb{
 <div id="main" style="position: fixed; top: -7vh; width: 100%; text-align: center; font-size:100vh; font-weight: bold;">0</div>
 <div style="position: fixed; top: 0px; width: 100%; height: 50px; z-index:1;">
   <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left; width:25%; height:100%; margin-top:4vh;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
-  <input type="button" onClick="startCounter();" value="&#9654;" style="float:left; font-size:10vh; width:15vh; height:15vh;">
+  <input type="button" id="playButton" onClick="startCounter();" value="&#9654;" style="float:left; font-size:10vh; width:15vh; height:15vh;">
   
   <input id="intMax" type="range" min="2" max="9" step="1" value="4" style="float:right; width:25%; height:100%; margin-top:4vh;" onInput="document.getElementById('printMax').innerHTML=this.value;">
-  <input type="button" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:10vh; width:15vh; height:15vh;">
+  <input type="button" id="pauseButton" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:10vh; width:15vh; height:15vh;">
   <br clear="all">
   <div id="printRange" style="float:left; font-size:15vh; width:10%;">0.6</div>
   <div id="printMax" style="float:right; margin-right:15px; font-size:15vh; width:10%;">4</div>
