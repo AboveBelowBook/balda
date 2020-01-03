@@ -23,6 +23,118 @@
     counter = setInterval('setCounter()',parseInt(document.getElementById('intRange').value));
   }
 </script>
+<style>
+input[type=range]{
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 1px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #fff;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background: #4BDAFF;
+    margin-top: -14px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+/*firefox*/
+input[type=range]{
+    /* fix for FF unable to apply focus style bug  */
+    border: 1px solid white; 
+    /*required for proper track sizing in FF*/
+    width: 200px;
+}
+input[type=range]::-moz-range-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+input[type=range]:focus::-moz-range-track {
+    background: #ccc;
+}
+/*internet*/
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,176,240, 0.8); 
+    margin-top:30px;
+    margin-bottom:30px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,176,240, 0.8); 
+	background-color:#00B0F0;
+}
+input[type='range']{
+    background: #0c0;
+    height:10px;
+}
+input[type='range']::-webkit-slider-thumb{
+    background:#f60;
+    height:30px;
+    width:30px;
+    border-radius: 30px;
+}
+</style>
 </head>
 <body style="background-color:black; text-align:center; color:white;">
 <img src="./bg2.png" style="position:fixed; height:100%; top:0px; left:50%; width:400px; margin-left:-200px;">
@@ -52,13 +164,13 @@
 <div id="main" style="font-size:100vh; font-weight: bold; position: relative;">0</div>
 <div style="position: fixed; top: 0px; width: 100%; height: 50px; z-index:1;">
   <input id="intRange" type="range" min="100" max="2000" step="100" value="600" style="float:left;font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printRange').innerHTML=this.value/1000;"> 
-  <input type="button" onClick="startCounter();" value="&#9654;" style="float:left;font-size:15vh; width:10%;">
+  <input type="button" onClick="startCounter();" value="&#9654;" style="float:left;font-size:15vh; width:10%; min-width:15vh;">
   
   <input id="intMax" type="range" min="2" max="9" step="1" value="4" style="float:right; font-size:25vw; width:15%; height:100%;" onInput="document.getElementById('printMax').innerHTML=this.value;">
-  <input type="button" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:15vh; width:10%;">
+  <input type="button" onClick="clearInterval(counter);" value="&#10074;&#10074;" style="float:right; font-size:15vh; width:10%; min-width:15vh;">
   <br clear="all">
-  <div id="printRange" style="float:left; font-size:20vh; width:10%; margin-top:-5%;">0.6</div>
-  <div id="printMax" style="float:right; margin-right:20px; font-size:20vh; width:10%; margin-top:-5%;">4</div>
+  <div id="printRange" style="float:left; font-size:15vh; width:10%;">0.6</div>
+  <div id="printMax" style="float:right; margin-right:15px; font-size:15vh; width:10%;">4</div>
 </div>
 </body>
 </html>
